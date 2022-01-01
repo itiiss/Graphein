@@ -12,10 +12,18 @@ export function line() {
   return chart().element('line');
 }
 
+export function point() {
+  return chart().element('point');
+}
+
 function chart() {
   const options = defineOptions(Chart);
   options.plot = () => plot(useOptions(options));
   return options;
+}
+
+export function r() {
+  return defineOptions(Encode).channel('r');
 }
 
 export function x() {

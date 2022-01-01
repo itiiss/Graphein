@@ -28,6 +28,15 @@ export function line(renderer, coordinate, {
   return renderer.path({ d, ...styles });
 }
 
+export function circle(renderer, coordinate, {
+  cx, cy, r, ...styles
+}) {
+  const [px, py] = coordinate([cx, cy]);
+  return renderer.circle({
+    cx: px, cy: py, r, ...styles,
+  });
+}
+
 export function rect(renderer, [v0, v1, v2, v3], coordinate, styles) {
   if (!coordinate.isPolar()) {
     const [p0, p2] = [v0, v2].map(coordinate);

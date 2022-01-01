@@ -46,7 +46,35 @@ export const createPage = ({
     // .coordinate(sp.transpose(), sp.polar())
     .plot();
 
-    const chart3 = sp
+  const chart5 = sp
+    .point()
+    .data(data)
+    .encode(
+      sp.x().field('genre'),
+      sp.y().field('sold'),
+      sp.r().field('sold'),
+      sp.stroke().field('genre'),
+      sp.fill().field('genre'),
+    )
+    .scale(sp.linear())
+    // .coordinate(sp.transpose(), sp.polar())
+    .plot();
+
+  const chart6 = sp
+    .point()
+    .data(data)
+    .encode(
+      sp.x().field('genre'),
+      sp.y().field('sold'),
+      sp.r().field('sold'),
+      sp.stroke().field('genre'),
+      sp.fill().field('genre'),
+    )
+    .scale(sp.linear())
+    .coordinate(sp.polar())
+    .plot();
+
+  const chart3 = sp
     .line()
     .data(data)
     .encode(
@@ -56,7 +84,7 @@ export const createPage = ({
       sp.fill().field('genre'),
     )
     .scale(sp.linear())
-    .coordinate(sp.transpose(), sp.polar())
+    .coordinate(sp.polar())
     .plot();
 
   const chart4 = sp
@@ -72,10 +100,26 @@ export const createPage = ({
     .coordinate(sp.transpose(), sp.polar())
     .plot();
 
+  const chart7 = sp
+    .interval()
+    .data(data)
+    .encode(
+      sp.x().field('genre'),
+      sp.y().field('sold'),
+      sp.stroke().field('genre'),
+      sp.fill().field('genre'),
+    )
+    .scale(sp.linear())
+    .coordinate(sp.polar())
+    .plot();
+
   article.appendChild(chart);
   article.appendChild(chart2);
+  article.appendChild(chart5);
+  article.appendChild(chart6);
   article.appendChild(chart3);
   article.appendChild(chart4);
+  article.appendChild(chart7);
 
   // article.insertAdjacentHTML('beforeend', section);
 
