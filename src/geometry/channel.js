@@ -2,6 +2,16 @@ export function createChannel({ optional = true, ...rest }) {
   return { optional, ...rest };
 }
 
+export function createChannels(options) {
+  return {
+    x: createXChannel({ name: 'x', optional: false }),
+    y: createYChannel({ name: 'y', optional: false }),
+    fill: createColorChannel({ name: 'fill' }),
+    stroke: createColorChannel({ name: 'stroke' }),
+    ...options,
+  };
+}
+
 export function createPositionChannel(options) {
   return createChannel({ type: 'position', ...options });
 }

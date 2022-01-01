@@ -8,6 +8,10 @@ export function interval() {
   return chart().element('interval');
 }
 
+export function line() {
+  return chart().element('line');
+}
+
 function chart() {
   const options = defineOptions(Chart);
   options.plot = () => plot(useOptions(options));

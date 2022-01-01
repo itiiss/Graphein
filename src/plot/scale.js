@@ -117,7 +117,7 @@ function inferOrdinal(
   transforms,
   {
     domain = inferDomainO(value),
-    range = scale === 'color' ? colors : undefined,
+    range = scale === 'color' ? colors : [],
   },
 ) {
   return {
