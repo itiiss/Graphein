@@ -54,7 +54,6 @@ export function plot({
 
   const renderer = (customCreateRenderer || createRenderer)(width, height);
 
-  // debugger
   geometry({
     index, renderer, values: scaledValues, scales, coordinate, directStyles: style,
   });

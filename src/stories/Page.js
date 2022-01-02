@@ -10,15 +10,34 @@ export const createPage = ({
   const header = createHeader({
     onLogin, onLogout, onCreateAccount, user,
   });
-  article.appendChild(header);
+  // article.appendChild(header);
 
   const data = [
-    { genre: 'Sports', sold: 275 },
-    { genre: 'Strategy', sold: 115 },
-    { genre: 'Action', sold: 120 },
-    { genre: 'Shooter', sold: 350 },
-    { genre: 'Other', sold: 150 },
+    { genre: 'Sports', sold: 275, group: 'a' },
+    { genre: 'Strategy', sold: 115, group: 'a' },
+    { genre: 'Action', sold: 120, group: 'a' },
+    { genre: 'Shooter', sold: 350, group: 'a' },
+    { genre: 'Other', sold: 150, group: 'a' },
+    // { genre: 'Sports', sold: 275, group: 'b' },
+    // { genre: 'Strategy', sold: 115, group: 'b' },
+    // { genre: 'Action', sold: 120, group: 'b' },
+    // { genre: 'Shooter', sold: 350, group: 'b' },
+    // { genre: 'Other', sold: 150, group: 'b' },
   ];
+
+  const textChart = sp
+    .word()
+    .data(data)
+    .encode(
+      sp.x().field('genre'),
+      sp.y().field('sold'),
+      sp.stroke().field('genre'),
+      sp.fill().field('genre'),
+      sp.text().field('sold'),
+    )
+    // .scale(sp.linear())
+  // .coordinate(sp.transpose(), sp.polar())
+    .plot();
 
   const chart = sp
     .line()
@@ -120,6 +139,7 @@ export const createPage = ({
   article.appendChild(chart3);
   article.appendChild(chart4);
   article.appendChild(chart7);
+  article.appendChild(textChart);
 
   // article.insertAdjacentHTML('beforeend', section);
 

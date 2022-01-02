@@ -4,6 +4,22 @@ import {
   Linear, Polar, Scale, Transpose, Encode, Chart, Band, Ordinal, Stack, AxisX, AxisY,
 } from './types';
 
+export function cell() {
+  return chart().element('cell');
+}
+
+export function rect() {
+  return chart().element('rect');
+}
+
+export function area() {
+  return chart().element('area');
+}
+
+export function word() {
+  return chart().element('text');
+}
+
 export function interval() {
   return chart().element('interval');
 }
@@ -22,12 +38,24 @@ function chart() {
   return options;
 }
 
+export function text() {
+  return defineOptions(Encode).channel('text');
+}
+
+export function fontSize() {
+  return defineOptions(Encode).channel('fontSize');
+}
+
 export function r() {
   return defineOptions(Encode).channel('r');
 }
 
 export function x() {
   return defineOptions(Encode).channel('x');
+}
+
+export function x1() {
+  return defineOptions(Encode).channel('x1');
 }
 
 export function y() {
