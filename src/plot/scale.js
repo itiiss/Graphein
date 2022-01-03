@@ -10,14 +10,14 @@ import { isPolar } from './coordinate';
 export function createScales(values, channels, transforms, optionsA) {
   const optionsO = fromObject(optionsA, (d) => d.channel, ({ channel, ...rest }) => ({ ...rest }));
   const scaleDescriptors = values.map(({ value, channel: name }) => {
-    // console.log('createScales', inferScale(
-    //   value,
-    //   channels[name],
-    //   transforms,
-    //   optionsO[name],
-    // ));
+    console.log('createScales', inferScale(
+      value,
+      channels[name],
+      transforms,
+      optionsO[name],
+    ));
 
-    console.log('optionsO', optionsA, optionsO, optionsO[name]);
+    // console.log('optionsO', optionsA, optionsO, optionsO[name]);
 
     return {
       name,
@@ -128,7 +128,7 @@ function inferOrdinal(
   transforms,
   {
     domain = inferDomainO(value),
-    range = scale === 'color' ? colors : Array.from(value, (_, index) => index / value.length),
+    range = scale === 'color' ? colors : Array.from(value, (_, index) => index / inferDomainO(value).length),
   },
 ) {
   return {

@@ -5,15 +5,15 @@ export default {
   input: 'src/index.js',
   output: [
     {
-      file: 'lib/sparrow.js',
+      file: 'lib/graphein.js',
       format: 'cjs',
     },
     {
-      file: 'esm/sparrow.js',
+      file: 'esm/graphein.js',
       format: 'es',
     },
     {
-      file: 'dist/sparrow.min.js',
+      file: 'dist/graphein.min.js',
       name: 'sp',
       format: 'umd',
     },

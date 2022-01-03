@@ -1,13 +1,11 @@
 {
-  "name": "@sparrow-vis/sparrow",
+  "name": "graphein",
   "version": "0.0.2",
-  "description": "Sparrow is a tiny plot library based on the grammar of graphics for learning purpose.",
-  "main": "lib/sparrow.js",
-  "module": "esm/sparrow.js",
-  "unpkg": "dist/sparrow.min.js",
+  "main": "lib/graphein.js",
+  "module": "esm/graphein.js",
+  "unpkg": "dist/graphein.min.js",
   "scripts": {
     "lint": "eslint --fix",
-    "test": "jest --coverage",
     "build": "rimraf -rf ./dist ./lib ./esm && rollup --config",
     "ci": "run-s lint test build",
     "prepare": "husky install",
@@ -20,9 +18,6 @@
     "lib",
     "esm",
     "dist"
-  ],
-  "keywords": [
-    "visualization"
   ],
   "author": "",
   "license": "MIT",
@@ -53,13 +48,6 @@
     "*.js": [
       "eslint --fix"
     ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sparrow-vis/sparrow"
-  },
-  "bugs": {
-    "url": "https://github.com/sparrow-vis/sparrow/issues"
   },
   "dependencies": {}
 }

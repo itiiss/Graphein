@@ -1,9 +1,7 @@
-import './button.css';
 import * as sp from '../plot';
 import { createBand } from '../scale';
 
-export const createButton = ({
-}) => {
+export const XperimentalChart = () => {
   const page = document.createElement('page');
 
   // '#5B8FF9', '#5B8FF9', '#5B8FF9', '#F6BD16'

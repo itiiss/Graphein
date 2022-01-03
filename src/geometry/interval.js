@@ -1,5 +1,5 @@
 import {
-  createColorChannel, createLabelChannel, createXChannel, createYChannel,
+  createColorChannel, createLabelChannel, createXChannel, createYChannel, createChannel,
 } from './channel';
 import { fromStyles, rectLabel } from './utils';
 import { rect } from './shape';
@@ -72,6 +72,7 @@ export function createInterval() {
 
   render.channels = () => ({
     x: createXChannel({ name: 'x', scaleType: 'band', optional: false }),
+    z: createChannel({ name: 'z', scaleType: 'band' }),
     y: createYChannel({ name: 'y', optional: false }),
     y1: createYChannel({ name: 'y1', optional: false }),
     fill: createColorChannel({ name: 'fill' }),

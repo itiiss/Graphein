@@ -1,5 +1,5 @@
 import {
-  createChannel, createChannels,
+  createChannel, createChannels, createXChannel, createYChannel,
 } from './channel';
 import { text as shapeText } from './shape';
 import { fromStyles } from './utils';
@@ -32,7 +32,7 @@ export function createText() {
         x: X[I],
         y: Y[I],
         rotate: R[I] || defaults.rotate,
-        fontSize: FS[I] || defaults.fontSize,
+        fontSize: FS[I] * defaults.fontSize * index.length || defaults.fontSize,
         text: T[I],
       });
 
@@ -43,7 +43,7 @@ export function createText() {
   render.channels = () => createChannels({
     rotate: createChannel({ name: 'rotate' }),
     fontSize: createChannel({ name: 'fontSize' }),
-    text: createChannel({ name: 'text', optional: false }),
+    text: createChannel({ name: 'text', optional: false, scaleType: 'identity' }),
   });
 
   return render;

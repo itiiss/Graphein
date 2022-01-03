@@ -62,6 +62,10 @@ export function y() {
   return defineOptions(Encode).channel('y');
 }
 
+export function z() {
+  return defineOptions(Encode).channel('z');
+}
+
 export function y1() {
   return defineOptions(Encode).channel('y1');
 }

@@ -44,6 +44,7 @@ export function plot({
   const {
     width, height, marginTop, marginLeft, chartHeight, chartWidth,
   } = calcDimensions(ticks, titles, transformDescriptors, options);
+
   const coordinate = createCoordinate({
     x: marginLeft,
     y: marginTop,
@@ -54,6 +55,7 @@ export function plot({
 
   const renderer = (customCreateRenderer || createRenderer)(width, height);
 
+  // debugger
   geometry({
     index, renderer, values: scaledValues, scales, coordinate, directStyles: style,
   });
