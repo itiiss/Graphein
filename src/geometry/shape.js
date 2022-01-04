@@ -52,9 +52,8 @@ export function rect(renderer, coordinate, {
   if (!coordinate.isPolar()) {
     const [width, height] = sub(p2, p0);
     const [x, y] = p0;
-    // console.log('geo_shape', x, y, width, height, styles);
     return renderer.rect({
-      x, y, width: 40, height, ...styles,
+      x, y, width, height, ...styles,
     });
   }
 

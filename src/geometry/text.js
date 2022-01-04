@@ -32,7 +32,7 @@ export function createText() {
         x: X[I],
         y: Y[I],
         rotate: R[I] || defaults.rotate,
-        fontSize: FS[I] * defaults.fontSize * index.length || defaults.fontSize,
+        fontSize: FS[I] || defaults.fontSize,
         text: T[I],
       });
 

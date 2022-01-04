@@ -9,7 +9,7 @@ export function createPoint() {
     renderer, index, values, directStyles, scales, coordinate,
   }) => {
     const defaults = {
-      r: 10,
+      r: 3,
       fill: 'none',
     };
 
@@ -25,7 +25,7 @@ export function createPoint() {
       };
       const [geometryStyles, labelStyles] = fromStyles(styles);
 
-      const r = R[I] * defaults.r || defaults.r;
+      const r = R[I] || defaults.r;
 
       const point = circle(renderer, coordinate, {
         ...defaults,

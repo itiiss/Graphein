@@ -14,7 +14,6 @@ export function sub([x1, y1], [x0, y0]) {
   return [x1 - x0, y1 - y0];
 }
 
-// TODO: refactor
 export function angleBetween(v0, v1) {
   const a0 = angle(v0);
   const a1 = angle(v1);

@@ -13,8 +13,8 @@ export function createCell() {
     const { x, y } = scales;
 
     const { x: X, y: Y } = values;
-    const width = 10; // x.bandWidth();
-    const height = 10; // y.bandWidth();
+    const width = x.bandWidth();
+    const height = y.bandWidth();
 
     return Array.from(index, (I, index) => {
       const styles = {

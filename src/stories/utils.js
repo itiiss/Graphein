@@ -24,6 +24,7 @@ export function plot({
   channels,
   styles,
   geometry,
+  guide: guidesDescriptors = [],
   transforms = [cartesian()],
   get = (d) => d[0],
 }) {
@@ -36,9 +37,15 @@ export function plot({
     transforms,
   });
 
-  // renderer, index, values, directStyles, scales, coordinate,
+  geometry({
+    renderer, index, values: channels, directStyles: styles, scales, coordinate,
+  });
 
-  geometry(renderer, index, channels, styles, scales, coordinate);
+  // for (const [key, guide] of Object.entries(guides)) {
+  //   guide({
+  //     renderer, scale: scales[key], values: ticks[key], coordinate, title: titles[key],
+  //   });
+  // }
 
   //   mount(createDiv(), renderer.node());
 
