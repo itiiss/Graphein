@@ -2,6 +2,13 @@ import {
   cartesian, createCoordinate,
 } from '../coordinate';
 import { createRenderer } from '../renderer';
+import { createGuides } from '../plot/guide';
+import { patchEncode } from '../plot/encode';
+import { valuesOf } from '../plot/data';
+import { calcDimensions } from '../plot/dimension';
+import { range } from '../plot/utils';
+import { createScales, applyScales } from '../plot/scale';
+import { applyStatistics } from '../plot/statistic';
 
 export function createDiv() {
   const div = document.createElement('div');
@@ -16,39 +23,67 @@ export function mount(parent, child) {
 }
 
 export function plot({
+  element: geometryType,
+  data = [],
+  scale: scaleOptions = [],
+  coordinate: transformDescriptors = [cartesian()],
+  encode = [],
+  statistic: statisticDescriptors = [],
+  guide: guidesDescriptors = [],
+  style = {},
   index,
-  values,
-  width = 600,
-  height = 400,
-  scales,
+  // values,
+  // width = 600,
+  // height = 400,
+  // scales = [],
   channels,
   styles,
   geometry,
-  guide: guidesDescriptors = [],
   transforms = [cartesian()],
-  get = (d) => d[0],
+  ...options
 }) {
-  const renderer = createRenderer(width, height);
+
+  const encodes = patchEncode(geometryType, encode);
+
+  const values = valuesOf(data, encodes, channels);
+  const transformedValues = applyStatistics(index, values, geometryType, statisticDescriptors);
+  const [scaleDescriptors, scales] = createScales(
+    transformedValues,
+    channels,
+    transformDescriptors,
+    [scaleOptions],
+  );
+  const scaledValues = applyScales(transformedValues, scales);
+
+  const [guides, ticks, titles] = createGuides(
+    guidesDescriptors,
+    scaleDescriptors,
+    scales,
+    encodes,
+  );
+
+  const {
+    width, height, marginTop, marginLeft, chartHeight, chartWidth,
+  } = calcDimensions(ticks, titles, transformDescriptors, options);
+
   const coordinate = createCoordinate({
-    width,
-    height,
-    x: 0,
-    y: 0,
-    transforms,
+    x: marginLeft,
+    y: marginTop,
+    width: chartWidth,
+    height: chartHeight,
+    transforms: transformDescriptors,
   });
+
+  const renderer = createRenderer(width, height);
 
   geometry({
-    renderer, index, values: channels, directStyles: styles, scales, coordinate,
+    renderer, index, values: channels, directStyles: styles, scales: scaleOptions, coordinate,
   });
 
-  // for (const [key, guide] of Object.entries(guides)) {
-  //   guide({
-  //     renderer, scale: scales[key], values: ticks[key], coordinate, title: titles[key],
-  //   });
-  // }
-
-  //   mount(createDiv(), renderer.node());
-
-  //   const shape = get(shapes);
+  for (const [key, guide] of Object.entries(guides)) {
+    guide({
+      renderer, scale: scales[key], values: ticks[key], coordinate, title: titles[key],
+    });
+  }
   return renderer.node();
 }

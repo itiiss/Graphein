@@ -15,6 +15,39 @@ export const RectDemos = () => {
     styles: {
       stroke: 'black',
     },
+    data: [
+      {
+        lang: 'Python', x1: 1, y1: 0.5, x: 0, y: 0, fill: '#5B8FF9', stroke: '#5B8FF9',
+      },
+      {
+        lang: 'Clang', x1: 0.5, y1: 1, x: 0, y: 0.5, fill: '#5AD8A6', stroke: '#5AD8A6',
+      },
+      {
+        lang: 'Ruby', x1: 1, y1: 1, x: 0.5, y: 0.5, fill: '#5D7092', stroke: '#5D7092',
+      },
+    ],
+    encode: [
+      {
+        channel: 'x',
+        field: 'x',
+      },
+      {
+        channel: 'y',
+        field: 'y',
+      },
+      {
+        channel: 'x1',
+        field: 'x1',
+      },
+      {
+        channel: 'y1',
+        field: 'y1',
+      },
+      {
+        channel: 'fill',
+        field: 'fill',
+      },
+    ],
     channels: {
       fill: ['#5B8FF9', '#5AD8A6', '#5D7092'],
       x: [0, 0, 0.5],
@@ -31,11 +64,44 @@ export const RectDemos = () => {
     styles: {
       stroke: 'black',
     },
-    transforms: [
+    coordinate: [
       polar({
         startAngle: 0, endAngle: Math.PI * 2, innerRadius: 0.2, outerRadius: 1,
       }),
       cartesian(),
+    ],
+    data: [
+      {
+        lang: 'Python', x1: 1, y1: 0.5, x: 0, y: 0, fill: '#5B8FF9', stroke: '#5B8FF9',
+      },
+      {
+        lang: 'Clang', x1: 0.5, y1: 1, x: 0, y: 0.5, fill: '#5AD8A6', stroke: '#5AD8A6',
+      },
+      {
+        lang: 'Ruby', x1: 1, y1: 1, x: 0.5, y: 0.5, fill: '#5D7092', stroke: '#5D7092',
+      },
+    ],
+    encode: [
+      {
+        channel: 'x',
+        field: 'x',
+      },
+      {
+        channel: 'y',
+        field: 'y',
+      },
+      {
+        channel: 'x1',
+        field: 'x1',
+      },
+      {
+        channel: 'y1',
+        field: 'y1',
+      },
+      {
+        channel: 'fill',
+        field: 'fill',
+      },
     ],
     channels: {
       fill: ['#5B8FF9', '#5AD8A6', '#5D7092'],
@@ -44,7 +110,6 @@ export const RectDemos = () => {
       x1: [1, 0.5, 1],
       y1: [0.5, 1, 1],
     },
-    get: (d) => d[0][0],
   });
 
   article.appendChild(normalRect);
