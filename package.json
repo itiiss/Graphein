@@ -51,5 +51,8 @@
       "eslint --fix"
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "roughjs": "^4.5.2",
+    "zrender": "^5.2.1"
+  }
 }

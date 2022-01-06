@@ -1,9 +1,20 @@
-import { area as pathArea, line as pathLine, ring as pathRing } from './path';
+import {
+  area as pathArea, line as pathLine, ring as pathRing, canvasRing,
+} from './path';
 
-export function ring(renderer, { cx, cy, r1, r2, ...styles }) {
-  const ring = renderer.path({ ...styles, d: pathRing([[cx, cy], [r1, r2]]), stroke: 'none' });
-  const innerStroke = renderer.circle({ ...styles, fill: 'none', r: r1, cx, cy });
-  const outerStroke = renderer.circle({ ...styles, fill: 'none', r: r2, cx, cy });
+export function ring(renderer, {
+  cx, cy, r1, r2, ...styles
+}) {
+  const canvasSector = renderer.type() === 'ZRENDER' ? canvasRing([[cx, cy], [r1, r2]]) : null;
+  const ring = renderer.path({
+    ...styles, d: pathRing([[cx, cy], [r1, r2]]), canvasSector, stroke: 'none',
+  });
+  const innerStroke = renderer.circle({
+    ...styles, fill: 'none', r: r1, cx, cy,
+  });
+  const outerStroke = renderer.circle({
+    ...styles, fill: 'none', r: r2, cx, cy,
+  });
   return [innerStroke, ring, outerStroke];
 }
 

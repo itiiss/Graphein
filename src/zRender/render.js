@@ -1,12 +1,9 @@
 import { createContext } from './context';
 import {
-  line, circle, text, rect, path, ring,
+  circle, text, rect, path, ring, line,
 } from './shape';
-import {
-  restore, save, scale, translate, rotate,
-} from './transform';
 
-export function createRenderer(width, height) {
+export function createZRenderer(width, height) {
   const context = createContext(width, height);
   return {
     line: (options) => line(context, options),
@@ -15,13 +12,8 @@ export function createRenderer(width, height) {
     rect: (options) => rect(context, options),
     path: (options) => path(context, options),
     ring: (options) => ring(context, options),
-    restore: () => restore(context),
-    save: () => save(context),
-    scale: (...args) => scale(context, ...args),
-    rotate: (...args) => rotate(context, ...args),
-    translate: (...args) => translate(context, ...args),
     node: () => context.node,
-    group: () => context.group,
-    type: () => 'NORMAL_RENDER',
+    context: () => context.render,
+    type: () => 'ZRENDER',
   };
 }

@@ -12,6 +12,7 @@ export const AreaDemos = () => {
     geometry: area(),
     index: [0, 1, 2, 3],
     scales: {},
+    rendererType: 'canvas',
     styles: {
       stroke: 'black',
       fillOpacity: 0.5,
@@ -220,6 +221,7 @@ export const AreaDemos = () => {
     geometry: area(),
     index: [0, 1, 2, 3, 4, 5, 6, 7],
     scales: {},
+    rendererType: 'rough',
     styles: {
       stroke: 'black',
       fillOpacity: 0.2,
@@ -301,6 +303,7 @@ export const AreaDemos = () => {
     geometry: area(),
     index: [0, 1, 2, 3, 4, 5, 6, 7],
     scales: {},
+    rendererType: 'rough',
     styles: {
       stroke: 'black',
       fillOpacity: 0.2,

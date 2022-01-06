@@ -1,7 +1,7 @@
 import {
   cartesian, polar,
 } from '../../coordinate';
-import { createText as text, createLine as line  } from '../../geometry';
+import { createText as text, createLine as line } from '../../geometry';
 import * as sp from '../../index';
 import { plot } from '../utils';
 
@@ -66,7 +66,7 @@ export const TextDemos = () => {
       rotate: [45, 180, 60, -30],
       fontSize: [40, 60, 20, 80],
       x: [0.2, 0.7, 0.7, 0.3],
-      y: [0.4, 0.2, 0.6, 0.9],
+      y: [0.4, 0.2, 0.6, 0.6],
     },
   });
 

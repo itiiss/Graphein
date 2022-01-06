@@ -24,17 +24,51 @@ export function axis({
         ? circularDy
         : horizontalDy;
 
-    tick({
-      renderer,
-      x,
-      y,
-      dy,
-      label,
-      tickRotation,
-      textRotation,
-      ...options,
-    });
+    if (renderer.type() === 'ZRENDER') {
+      canvasTick({
+        renderer,
+        x,
+        y,
+        dy,
+        label,
+        tickRotation,
+        textRotation,
+        ...options,
+      });
+    } else {
+      tick({
+        renderer,
+        x,
+        y,
+        dy,
+        label,
+        tickRotation,
+        textRotation,
+        ...options,
+      });
+    }
   }
+}
+
+export function canvasTick({
+  renderer,
+  x,
+  y,
+  x2,
+  y2,
+  dx = 0,
+  dy = 0,
+  label = '',
+  textAnchor = 'middle',
+  fontSize = '12',
+}) {
+  renderer.line({
+    x1: 0, y1: 0, x2, y2, stroke: 'currentColor', fill: 'currentColor',
+  });
+
+  renderer.text({
+    text: `${label}`, x: x - 20, y: y + 10, textAnchor, dy: `${dy}em`, dx: `${dx}em`, fontSize, fill: 'currentColor',
+  });
 }
 
 export function tick({

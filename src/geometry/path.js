@@ -1,4 +1,4 @@
-import { dist, angleBetween, sub } from '../utils';
+import { dist, angleBetween, sub, angle } from '../utils';
 
 export function line([p0, ...points]) {
   return [
@@ -29,6 +29,19 @@ export function sector([c, p0, p1, p2, p3]) {
   ];
 }
 
+export function canvasSector([c, p0, p1, p2, p3]) {
+  const r = dist(c, p0);
+  const r0 = dist(c, p2);
+  return {
+    cx: c[0],
+    cy: c[1],
+    r,
+    r0,
+    startAngle: angle(sub(p0, c)),
+    endAngle: angle(sub(p1, c)),
+  };
+}
+
 export function ring([c, [r1, r2]]) {
   const [cx, cy] = c;
   const p0 = [cx, cy - r2];
@@ -39,4 +52,20 @@ export function ring([c, [r1, r2]]) {
     ...sector([c, p0, p1, p2, p3]),
     ...sector([c, p1, p0, p3, p2]),
   ];
+}
+
+export function canvasRing([c, [r1, r2]]) {
+  const [cx, cy] = c;
+  const p0 = [cx, cy - r2];
+  const p2 = [cx, cy + r1];
+  const r = dist(c, p0);
+  const r0 = dist(c, p2);
+  return {
+    cx,
+    cy,
+    r,
+    r0,
+    startAngle: 0,
+    endAngle: Math.PI * 2,
+  };
 }

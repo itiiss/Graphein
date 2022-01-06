@@ -11,6 +11,7 @@ export const LineDemos = () => {
   const normalLine = plot({
     geometry: line(),
     index: [0, 1, 2, 3],
+    rendererType: 'canvas',
     styles: {
       stroke: 'black',
     },
@@ -110,6 +111,7 @@ export const LineDemos = () => {
 
   const radarLine = plot({
     geometry: line(),
+    rendererType: 'rough',
     index: [0, 1, 2, 3, 4, 5, 6, 7],
     scales: {},
     styles: {

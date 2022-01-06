@@ -11,6 +11,7 @@ export const IntervalDemos = () => {
   const normalInterval = plot({
     geometry: interval(),
     index: [0, 1, 2],
+    rendererType: 'canvas',
     scale: {
       x: createBand({
         domain: ['a', 'b', 'c'],
@@ -120,6 +121,7 @@ export const IntervalDemos = () => {
   const groupInterval = plot({
     geometry: interval(),
     index: [0, 1, 2, 3, 4, 5],
+    rendererType: 'rough',
     styles: {
       stroke: 'black',
     },
@@ -347,6 +349,7 @@ export const IntervalDemos = () => {
 
   const pieInterval = plot({
     geometry: interval(),
+    rendererType: 'rough',
     index: [0, 1, 2],
     styles: {
       stroke: 'black',

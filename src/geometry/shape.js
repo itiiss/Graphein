@@ -3,7 +3,9 @@ import {
 } from '../utils';
 import { colline } from './utils';
 import { contour, ring } from './primitive';
-import { line as pathLine, area as pathArea, sector as pathSector } from './path';
+import {
+  line as pathLine, area as pathArea, sector as pathSector, canvasSector,
+} from './path';
 
 export function arcPath(c, p0, p1, p2, p3) {
   const r = dist(c, p0);
@@ -61,6 +63,12 @@ export function rect(renderer, coordinate, {
   const [cx, cy] = center;
 
   if (!(equal(p0, p1) && equal(p2, p3))) {
+    if (renderer.type() === 'ZRENDER') {
+      return renderer.path({
+        canvasSector: canvasSector([center, ...ps]),
+        ...styles,
+      });
+    }
     return renderer.path({ d: pathSector([center, ...ps]), ...styles });
   }
 
@@ -74,6 +82,13 @@ export function rect(renderer, coordinate, {
 export function text(renderer, coordinate, {
   x, y, rotate, text, ...styles
 }) {
+  if (renderer.type() === 'ZRENDER') {
+    const { width, height } = renderer.node().style;
+    const textElement = renderer.text({
+      text, x: x * parseInt(width, 10), y: y * parseInt(height, 10), rotate, ...styles,
+    });
+    return textElement;
+  }
   const [px, py] = coordinate([x, y]);
   renderer.save();
   renderer.translate(px, py);

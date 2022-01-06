@@ -6,7 +6,7 @@ import {
   restore, save, scale, translate, rotate,
 } from './transform';
 
-export function createRenderer(width, height) {
+export function createRoughRenderer(width, height) {
   const context = createContext(width, height);
   return {
     line: (options) => line(context, options),
@@ -22,6 +22,6 @@ export function createRenderer(width, height) {
     translate: (...args) => translate(context, ...args),
     node: () => context.node,
     group: () => context.group,
-    type: () => 'NORMAL_RENDER',
+    type: () => 'ROUGH_RENDER',
   };
 }

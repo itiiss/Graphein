@@ -64,6 +64,7 @@ export const CellDemos = () => {
 
   const polarCell = plot({
     geometry: cell(),
+    rendererType: 'rough',
     index: [0, 1, 2, 3],
     scale: {
       x: createBand({

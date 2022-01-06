@@ -1,7 +1,10 @@
+import * as zrender from 'zrender';
 import {
   cartesian, createCoordinate,
 } from '../coordinate';
 import { createRenderer } from '../renderer';
+import { createZRenderer } from '../zRender';
+import { createRoughRenderer } from '../roughRender';
 import { createGuides } from '../plot/guide';
 import { patchEncode } from '../plot/encode';
 import { valuesOf } from '../plot/data';
@@ -24,6 +27,7 @@ export function mount(parent, child) {
 
 export function plot({
   element: geometryType,
+  rendererType = 'svg',
   data = [],
   scale: scaleOptions = [],
   coordinate: transformDescriptors = [cartesian()],
@@ -32,17 +36,12 @@ export function plot({
   guide: guidesDescriptors = [],
   style = {},
   index,
-  // values,
-  // width = 600,
-  // height = 400,
-  // scales = [],
   channels,
   styles,
   geometry,
   transforms = [cartesian()],
   ...options
 }) {
-
   const encodes = patchEncode(geometryType, encode);
 
   const values = valuesOf(data, encodes, channels);
@@ -54,6 +53,8 @@ export function plot({
     [scaleOptions],
   );
   const scaledValues = applyScales(transformedValues, scales);
+
+  console.log('zrender', zrender);
 
   const [guides, ticks, titles] = createGuides(
     guidesDescriptors,
@@ -74,7 +75,14 @@ export function plot({
     transforms: transformDescriptors,
   });
 
-  const renderer = createRenderer(width, height);
+  let renderer;
+  if (rendererType === 'svg') {
+    renderer = createRenderer(width, height);
+  } else if (rendererType === 'canvas') {
+    renderer = createZRenderer(width, height);
+  } else if (rendererType === 'rough') {
+    renderer = createRoughRenderer(width, height);
+  }
 
   geometry({
     renderer, index, values: channels, directStyles: styles, scales: scaleOptions, coordinate,
