@@ -23,7 +23,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.15.7",
+    "@babel/cli": "^7.18.10",
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
     "@commitlint/cli": "^13.2.1",
