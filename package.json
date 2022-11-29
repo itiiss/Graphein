@@ -53,6 +53,6 @@
   },
   "dependencies": {
     "roughjs": "^4.5.2",
-    "zrender": "^5.2.1"
+    "zrender": "^5.4.1"
   }
 }
